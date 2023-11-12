@@ -1,84 +1,77 @@
 
 function game() {
-    console.log("Weclome to Rock Paper Scissors!")
+    console.log("Weclome to Rock Paper Scissors!");
     let rounds = 1;
     let playerPoints = 0;
     let cpuPoints = 0;
-    while (rounds < 6) {
-        playerChoice = prompt("ROUND " + (rounds) + "! Rock, paper, or scissors?")
-        playerChoice = playerChoice.toLowerCase();
-        if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-            let roundWinner = playRound(playerChoice, getComputerChoice());
-            if (roundWinner == 1) {
-                cpuPoints += 1;
-                rounds++;
-            }
-            else if (roundWinner == 2) {
-                playerPoints += 1;
-                rounds++;
-            }
-            else {
-                console.log("This round will not count! Please select your weapon again.")
-            }
+    while (rounds < 6 && (playerPoints < 3 && cpuPoints < 3)) {
+        playerChoice = prompt("ROUND " + (rounds) + "! Rock, paper, or scissors?");
+        if (playerChoice === null) continue;
+        else { 
+            playerChoice = playerChoice.toLowerCase();
+            if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+                let computerChoice = getComputerChoice();
+                let roundWinner = playRound(playerChoice, computerChoice);
+                if (roundWinner == 1) {
+                    alert("You lost, " + playerChoice + " loses against " + computerChoice + "!\n"
+                            + "Player: " + playerPoints + " CPU: " + (cpuPoints + 1));
+                    cpuPoints++;
+                    rounds++;
+                }
+                else if (roundWinner == 2) {
+                    alert("You win, " + playerChoice + " beats " + computerChoice + "!\n"
+                            + "Player: " + (playerPoints + 1) + " CPU: " + cpuPoints);
+                    playerPoints++;
+                    rounds++;
+                }
+                else {
+                    alert("It's a tie! This round will not count! Please select your weapon again.\n"
+                            + "Player: " + playerPoints + " CPU: " + cpuPoints);
+                }
 
-        } else {
-            console.log("Could not understand option, please select your weapon again.")
+            } else {
+                alert("Could not understand option, please select your weapon again.");
+            }
         }
     }
 
     if (playerPoints > cpuPoints) {
-        console.log("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+        alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
     }
     else {
-        console.log("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+        alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
     }
 }
 
 // Decides if the player wins, loses, or ties with the computer for the round!
 function playRound(playerSelection, computerSelection) {
-    const player = playerSelection
-    const computer = computerSelection
-    const win = "You win, " + player + " beats " +
-                computer + "!";
-    const lose = "You lost, " + player + " loses against " +
-                computer + "!";
-    const tie = "It's a tie!"
-
-    
-    if (player === "rock") {
-        if (computer === "paper")  {
-            console.log(lose);
+    if (playerSelection === "rock") {
+        if (computerSelection === "paper")  {
             return 1;
         }
-        else if (computer === "scissors") {
-            console.log(win);
+        else if (computerSelection === "scissors") {
             return 2;
         }
     }
 
-    if (player === "paper") {
-        if (computer === "scissors") { 
-            console.log(lose);
+    if (playerSelection === "paper") {
+        if (computerSelection === "scissors") { 
             return 1;
         }
-        else if (computer === "rock") {
-            console.log(win);
+        else if (computerSelection === "rock") {
             return 2;
         }
     }
 
-    if (player === "scissors") {
-        if (computer === "rock") {
-            console.log(lose);
+    if (playerSelection === "scissors") {
+        if (computerSelection === "rock") {
             return 1;
         }
-        else if (computer === "paper") {
-            console.log(win);
+        else if (computerSelection === "paper") {
             return 2;
         }
     }
 
-    console.log(tie);
     return 0;
 }
 
