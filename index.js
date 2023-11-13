@@ -1,4 +1,4 @@
-
+// Main function where Rock Paper Scissors game takes place
 function game() {
     console.log("Weclome to Rock Paper Scissors!");
     let rounds = 1;
@@ -85,7 +85,3 @@ function getComputerChoice() {
 }
 
 game();
-
-// const playerChoice = "rOcK";
-// const compChoice = getComputerChoice();
-// const gameDecider = playRound(playerChoice, compChoice);
