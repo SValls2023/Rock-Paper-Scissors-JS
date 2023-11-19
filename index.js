@@ -1,46 +1,57 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
+    const defaultDOMState = document.body.innerHTML;
     const btn_contaier = document.querySelector('#btnContainer')
     const status = document.querySelector('#status');
     const battle = document.querySelector('#battle')
     const playerScore = document.querySelector('#playerScore');
     const cpuScore = document.querySelector('#cpuScore');
-    let rounds = 1;
     let playerPoints = 0;
     let cpuPoints = 0;
 
-        btn_contaier.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                const playerChoice = e.target.value;
-                const computerChoice = getComputerChoice();
-                const roundWinner = playRound(playerChoice, computerChoice);
-                if (roundWinner === 1) {
-                    status.textContent = "You lost!";
-                    battle.textContent = `${playerChoice} loses against ${computerChoice}!`
-                    cpuPoints++;
-                    cpuScore.textContent = `CPU: ${cpuPoints}`;
-                    rounds++;
-                }
-                else if (roundWinner === 2) {
-                    status.textContent = "You won!";
-                    battle.textContent = `${playerChoice} wins against ${computerChoice}!`
-                    playerPoints++;
-                    playerScore.textContent = `Player: ${playerPoints}`;
-                    rounds++;
-                }
-                else {
-                    status.textContent = "It's a tie!";
-                    battle.textContent = "Please select your weapon again!";
-                }
+    btn_contaier.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const playerChoice = e.target.value;
+            const computerChoice = getComputerChoice();
+            const roundWinner = playRound(playerChoice, computerChoice);
+            if (roundWinner === 1) {
+                status.textContent = "You lost!";
+                battle.textContent = `${playerChoice} loses against ${computerChoice}!`
+                cpuScore.textContent = "CPU: " + (cpuPoints + 1);
+                cpuPoints++;
             }
-        });
+            else if (roundWinner === 2) {
+                status.textContent = "You won!";
+                battle.textContent = `${playerChoice} wins against ${computerChoice}!`
+                playerScore.textContent = "Player: " + (playerPoints + 1);
+                playerPoints++;
+            }
+            else {
+                status.textContent = "It's a tie!";
+                battle.textContent = "Please select your weapon again!";
+            }
 
-    // if (playerPoints === 5) {
-    //     alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-    // }
-    // else {
-    //     alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-    // }
+            if (playerPoints == 5) {
+                alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                status.textContent = "Choose your weapon!"
+                battle.textContent = "The first to earn 5 points wins the battle!"
+                playerPoints = 0;
+                cpuPoints =  0;
+                playerScore.textContent = `Player: ${playerPoints}`;
+                cpuScore.textContent = `CPU: ${cpuPoints}`;
+            }
+            else if (cpuPoints == 5) {
+                alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                status.textContent = "Choose your weapon!"
+                battle.textContent = "The first to earn 5 points wins the battle!"
+                playerPoints = 0;
+                cpuPoints = 0;
+                playerScore.textContent = `Player: ${playerPoints}`;
+                cpuScore.textContent = `CPU: ${cpuPoints}`;
+            }
+        }
+    });
+
 }
 
 // Decides if the player wins, loses, or ties with the computer for the round!
@@ -83,5 +94,6 @@ function getComputerChoice() {
     else if (choice === 2) return "paper";
     return "scissors";
 }
+
 
 game();
