@@ -1,7 +1,11 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
     // Deletion: console.log("Weclome to Rock Paper Scissors!");
-    let rps_buttons = document.querySelectorAll('.choice');
+    const rps_buttons = document.querySelectorAll('.choice');
+    const status = document.querySelector('#status');
+    const battle = document.querySelector('#battle')
+    const playerScore = document.querySelector('#playerScore');
+    const cpuScore = document.querySelector('#cpuScore');
     let rounds = 1;
     let playerPoints = 0;
     let cpuPoints = 0;
@@ -12,20 +16,22 @@ function game() {
             const computerChoice = getComputerChoice();
             const roundWinner = playRound(playerChoice, computerChoice);
             if (roundWinner === 1) {
-                console.log("You lost, " + playerChoice + " loses against " + computerChoice + "!\n"
-                            + "Player: " + playerPoints + " CPU: " + (cpuPoints + 1));
+                status.textContent = "You lost!";
+                battle.textContent = `${playerChoice} loses against ${computerChoice}!`
                 cpuPoints++;
+                cpuScore.textContent = `CPU: ${cpuPoints}`;
                 rounds++;
             }
             else if (roundWinner === 2) {
-                console.log("You win, " + playerChoice + " beats " + computerChoice + "!\n"
-                            + "Player: " + (playerPoints + 1) + " CPU: " + cpuPoints);
+                status.textContent = "You won!";
+                battle.textContent = `${playerChoice} wins against ${computerChoice}!`
                 playerPoints++;
+                playerScore.textContent = `Player: ${playerPoints}`;
                 rounds++;
             }
             else {
-                console.log("It's a tie! This round will not count! Please select your weapon again.\n"
-                            + "Player: " + playerPoints + " CPU: " + cpuPoints);
+                status.textContent = "It's a tie!";
+                battle.textContent = "Please select your weapon again!";
             }
         });
     }
@@ -40,7 +46,7 @@ function game() {
 
 // Decides if the player wins, loses, or ties with the computer for the round!
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "rock") {
+    if (playerSelection === "Rock") {
         if (computerSelection === "paper")  {
             return 1;
         }
@@ -49,7 +55,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    if (playerSelection === "paper") {
+    if (playerSelection === "Paper") {
         if (computerSelection === "scissors") { 
             return 1;
         }
@@ -58,7 +64,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    if (playerSelection === "scissors") {
+    if (playerSelection === "Scissors") {
         if (computerSelection === "rock") {
             return 1;
         }
