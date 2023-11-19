@@ -1,7 +1,6 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
-    // Deletion: console.log("Weclome to Rock Paper Scissors!");
-    const rps_buttons = document.querySelectorAll('.choice');
+    const btn_contaier = document.querySelector('#btnContainer')
     const status = document.querySelector('#status');
     const battle = document.querySelector('#battle')
     const playerScore = document.querySelector('#playerScore');
@@ -10,31 +9,31 @@ function game() {
     let playerPoints = 0;
     let cpuPoints = 0;
 
-    for(let i = 0; i < rps_buttons.length; i++) {
-        rps_buttons[i].addEventListener('click', () => {
-            const playerChoice = rps_buttons[i].value;
-            const computerChoice = getComputerChoice();
-            const roundWinner = playRound(playerChoice, computerChoice);
-            if (roundWinner === 1) {
-                status.textContent = "You lost!";
-                battle.textContent = `${playerChoice} loses against ${computerChoice}!`
-                cpuPoints++;
-                cpuScore.textContent = `CPU: ${cpuPoints}`;
-                rounds++;
-            }
-            else if (roundWinner === 2) {
-                status.textContent = "You won!";
-                battle.textContent = `${playerChoice} wins against ${computerChoice}!`
-                playerPoints++;
-                playerScore.textContent = `Player: ${playerPoints}`;
-                rounds++;
-            }
-            else {
-                status.textContent = "It's a tie!";
-                battle.textContent = "Please select your weapon again!";
+        btn_contaier.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const playerChoice = e.target.value;
+                const computerChoice = getComputerChoice();
+                const roundWinner = playRound(playerChoice, computerChoice);
+                if (roundWinner === 1) {
+                    status.textContent = "You lost!";
+                    battle.textContent = `${playerChoice} loses against ${computerChoice}!`
+                    cpuPoints++;
+                    cpuScore.textContent = `CPU: ${cpuPoints}`;
+                    rounds++;
+                }
+                else if (roundWinner === 2) {
+                    status.textContent = "You won!";
+                    battle.textContent = `${playerChoice} wins against ${computerChoice}!`
+                    playerPoints++;
+                    playerScore.textContent = `Player: ${playerPoints}`;
+                    rounds++;
+                }
+                else {
+                    status.textContent = "It's a tie!";
+                    battle.textContent = "Please select your weapon again!";
+                }
             }
         });
-    }
 
     // if (playerPoints === 5) {
     //     alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
