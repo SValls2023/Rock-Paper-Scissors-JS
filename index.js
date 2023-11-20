@@ -1,51 +1,63 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
-    console.log("Weclome to Rock Paper Scissors!");
-    let rounds = 1;
+    const defaultDOMState = document.body.innerHTML;
+    const btn_contaier = document.querySelector('#btnContainer')
+    const status = document.querySelector('#status');
+    const battle = document.querySelector('#battle')
+    const playerScore = document.querySelector('#playerScore');
+    const cpuScore = document.querySelector('#cpuScore');
     let playerPoints = 0;
     let cpuPoints = 0;
-    while (rounds < 6 && (playerPoints < 3 && cpuPoints < 3)) {
-        playerChoice = prompt("ROUND " + (rounds) + "! Rock, paper, or scissors?");
-        if (playerChoice === null) continue;
-        else { 
-            playerChoice = playerChoice.toLowerCase();
-            if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-                let computerChoice = getComputerChoice();
-                let roundWinner = playRound(playerChoice, computerChoice);
-                if (roundWinner == 1) {
-                    alert("You lost, " + playerChoice + " loses against " + computerChoice + "!\n"
-                            + "Player: " + playerPoints + " CPU: " + (cpuPoints + 1));
-                    cpuPoints++;
-                    rounds++;
-                }
-                else if (roundWinner == 2) {
-                    alert("You win, " + playerChoice + " beats " + computerChoice + "!\n"
-                            + "Player: " + (playerPoints + 1) + " CPU: " + cpuPoints);
-                    playerPoints++;
-                    rounds++;
-                }
-                else {
-                    alert("It's a tie! This round will not count! Please select your weapon again.\n"
-                            + "Player: " + playerPoints + " CPU: " + cpuPoints);
-                }
 
-            } else {
-                alert("Could not understand option, please select your weapon again.");
+    btn_contaier.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const playerChoice = e.target.value;
+            const computerChoice = getComputerChoice();
+            const roundWinner = playRound(playerChoice, computerChoice);
+            if (roundWinner === 1) {
+                status.textContent = "You lost!";
+                battle.textContent = `${playerChoice} loses against ${computerChoice}!`
+                cpuPoints++;
+                cpuScore.textContent = "CPU: " + (cpuPoints);
+
+                if (cpuPoints == 5) {
+                    alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                    status.textContent = "Choose your weapon!"
+                    battle.textContent = "The first to earn 5 points wins the battle!"
+                    playerPoints = 0;
+                    cpuPoints = 0;
+                    playerScore.textContent = `Player: ${playerPoints}`;
+                    cpuScore.textContent = `CPU: ${cpuPoints}`;
+                }
+            }
+            else if (roundWinner === 2) {
+                status.textContent = "You won!";
+                battle.textContent = `${playerChoice} wins against ${computerChoice}!`
+                playerPoints++;
+                playerScore.textContent = "Player: " + (playerPoints);
+
+                if (playerPoints == 5) {
+                    alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                    status.textContent = "Choose your weapon!"
+                    battle.textContent = "The first to earn 5 points wins the battle!"
+                    playerPoints = 0;
+                    cpuPoints =  0;
+                    playerScore.textContent = `Player: ${playerPoints}`;
+                    cpuScore.textContent = `CPU: ${cpuPoints}`;
+                }
+            }
+            else {
+                status.textContent = "It's a tie!";
+                battle.textContent = "Please select your weapon again!";
             }
         }
-    }
+    });
 
-    if (playerPoints > cpuPoints) {
-        alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-    }
-    else {
-        alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-    }
 }
 
 // Decides if the player wins, loses, or ties with the computer for the round!
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "rock") {
+    if (playerSelection === "Rock") {
         if (computerSelection === "paper")  {
             return 1;
         }
@@ -54,7 +66,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    if (playerSelection === "paper") {
+    if (playerSelection === "Paper") {
         if (computerSelection === "scissors") { 
             return 1;
         }
@@ -63,7 +75,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    if (playerSelection === "scissors") {
+    if (playerSelection === "Scissors") {
         if (computerSelection === "rock") {
             return 1;
         }
@@ -83,5 +95,6 @@ function getComputerChoice() {
     else if (choice === 2) return "paper";
     return "scissors";
 }
+
 
 game();
