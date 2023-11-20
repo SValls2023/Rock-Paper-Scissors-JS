@@ -9,6 +9,28 @@ body {
     background-color: #34303b
 }
 
+.modal {
+    background-color: #212024;
+    color: #fcfaff;
+    margin: 350px auto;
+    padding: 30px;
+}
+
+.modal h2, p, button {
+    margin: 5px;
+    padding: 5px;
+}
+
+.modal p {
+    padding: 5px;
+    font-size: 18px;
+}
+
+.modal button {
+    margin-top: 15px;
+    padding: 9px;
+}
+
 #titleContainer {
     background-color: #1a191c;
     text-align: center;
@@ -61,8 +83,8 @@ body {
 }
 
 #btnContainer .btn {
-    height: 75px;
-    width: 75px;
+    height: 125px;
+    width: 125px;
     margin: 10px;
 }
 
@@ -71,10 +93,43 @@ body {
     color: #fcfaff;
     border-color: #fcfaff;
     border-style: solid;
-    font-size: 30px;
+    font-size: 60px;
     padding: 5px;
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
+}
+
+#btnContainer .btn .choice {
+    background-color: #897b9c;
+    color: #fcfaff;
+    border-color: #fcfaff;
+    border-style: solid;
+    font-size: 60px;
+    padding: 5px;
+    width: 120px;
+    height: 120px;
+}
+
+#btnContainer .btn .choice:hover {
+    background-color: #a494bb;
+    color: #fcfaff;
+    border-color: #fcfaff;
+    border-style: solid;
+    font-size: 60px;
+    padding: 5px;
+    width: 120px;
+    height: 120px;
+}
+
+#btnContainer .btn .choice:active {
+    background-color: #897b9c;
+    color: #fcfaff;
+    border-color: #fcfaff;
+    border-style: solid;
+    font-size: 60px;
+    padding: 5px;
+    width: 120px;
+    height: 120px;
 }
 
 footer {

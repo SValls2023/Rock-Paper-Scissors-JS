@@ -1,6 +1,9 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
-    const defaultDOMState = document.body.innerHTML;
+    const modal = document.querySelector('.modal');
+    const closeModal = document.querySelector('.close-button');
+    const titleModal = document.querySelector('#modal-title');
+    const textModal = document.querySelector('#modal-dialogue');
     const btn_container = document.querySelector('#btnContainer')
     const status = document.querySelector('#status');
     const battle = document.querySelector('#battle')
@@ -19,37 +22,47 @@ function game() {
                 battle.textContent = `${playerChoice} loses against ${computerChoice}!`
                 cpuPoints++;
                 cpuScore.textContent = "CPU: " + (cpuPoints);
-
-                if (cpuPoints == 5) {
-                    alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-                    status.textContent = "Choose your weapon!"
-                    battle.textContent = "The first to earn 5 points wins the battle!"
-                    playerPoints = 0;
-                    cpuPoints = 0;
-                    playerScore.textContent = `Player: ${playerPoints}`;
-                    cpuScore.textContent = `CPU: ${cpuPoints}`;
-                }
             }
             else if (roundWinner === 2) {
                 status.textContent = "You won!";
                 battle.textContent = `${playerChoice} wins against ${computerChoice}!`
                 playerPoints++;
                 playerScore.textContent = "Player: " + (playerPoints);
-
-                if (playerPoints == 5) {
-                    alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-                    status.textContent = "Choose your weapon!"
-                    battle.textContent = "The first to earn 5 points wins the battle!"
-                    playerPoints = 0;
-                    cpuPoints =  0;
-                    playerScore.textContent = `Player: ${playerPoints}`;
-                    cpuScore.textContent = `CPU: ${cpuPoints}`;
-                }
             }
             else {
                 status.textContent = "It's a tie!";
                 battle.textContent = "Please select your weapon again!";
             }
+        }
+
+        if (cpuPoints >= 5) {
+            titleModal.textContent = "You Lost!";
+            textModal.textContent = "CPU has won...";
+            modal.showModal();
+            closeModal.addEventListener('click', () => {
+                status.textContent = "Choose your weapon!";
+                battle.textContent = "The first to earn 5 points wins the battle!";
+                playerPoints = 0;
+                cpuPoints = 0;
+                playerScore.textContent = `Player: ${playerPoints}`;
+                cpuScore.textContent = `CPU: ${cpuPoints}`;
+                modal.close();
+            });
+        }
+
+        if (playerPoints >= 5) {
+            titleModal.textContent = "You Won!";
+            textModal.textContent = "Player has won!";
+            modal.showModal();
+            closeModal.addEventListener('click', () => {
+                status.textContent = "Choose your weapon!";
+                battle.textContent = "The first to earn 5 points wins the battle!";
+                playerPoints = 0;
+                cpuPoints = 0;
+                playerScore.textContent = `Player: ${playerPoints}`;
+                cpuScore.textContent = `CPU: ${cpuPoints}`;
+                modal.close();
+            });
         }
     });
 
