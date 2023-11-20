@@ -17,37 +17,38 @@ function game() {
             if (roundWinner === 1) {
                 status.textContent = "You lost!";
                 battle.textContent = `${playerChoice} loses against ${computerChoice}!`
-                cpuScore.textContent = "CPU: " + (cpuPoints + 1);
                 cpuPoints++;
+                cpuScore.textContent = "CPU: " + (cpuPoints);
+
+                if (cpuPoints == 5) {
+                    alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                    status.textContent = "Choose your weapon!"
+                    battle.textContent = "The first to earn 5 points wins the battle!"
+                    playerPoints = 0;
+                    cpuPoints = 0;
+                    playerScore.textContent = `Player: ${playerPoints}`;
+                    cpuScore.textContent = `CPU: ${cpuPoints}`;
+                }
             }
             else if (roundWinner === 2) {
                 status.textContent = "You won!";
                 battle.textContent = `${playerChoice} wins against ${computerChoice}!`
-                playerScore.textContent = "Player: " + (playerPoints + 1);
                 playerPoints++;
+                playerScore.textContent = "Player: " + (playerPoints);
+
+                if (playerPoints == 5) {
+                    alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
+                    status.textContent = "Choose your weapon!"
+                    battle.textContent = "The first to earn 5 points wins the battle!"
+                    playerPoints = 0;
+                    cpuPoints =  0;
+                    playerScore.textContent = `Player: ${playerPoints}`;
+                    cpuScore.textContent = `CPU: ${cpuPoints}`;
+                }
             }
             else {
                 status.textContent = "It's a tie!";
                 battle.textContent = "Please select your weapon again!";
-            }
-
-            if (playerPoints == 5) {
-                alert("You win the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-                status.textContent = "Choose your weapon!"
-                battle.textContent = "The first to earn 5 points wins the battle!"
-                playerPoints = 0;
-                cpuPoints =  0;
-                playerScore.textContent = `Player: ${playerPoints}`;
-                cpuScore.textContent = `CPU: ${cpuPoints}`;
-            }
-            else if (cpuPoints == 5) {
-                alert("The CPU won the competition! Player: " + playerPoints + " CPU: " + cpuPoints);
-                status.textContent = "Choose your weapon!"
-                battle.textContent = "The first to earn 5 points wins the battle!"
-                playerPoints = 0;
-                cpuPoints = 0;
-                playerScore.textContent = `Player: ${playerPoints}`;
-                cpuScore.textContent = `CPU: ${cpuPoints}`;
             }
         }
     });
