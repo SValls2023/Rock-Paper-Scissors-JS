@@ -1,7 +1,7 @@
 // Main function where Rock Paper Scissors game takes place
 function game() {
     const defaultDOMState = document.body.innerHTML;
-    const btn_contaier = document.querySelector('#btnContainer')
+    const btn_container = document.querySelector('#btnContainer')
     const status = document.querySelector('#status');
     const battle = document.querySelector('#battle')
     const playerScore = document.querySelector('#playerScore');
@@ -9,7 +9,7 @@ function game() {
     let playerPoints = 0;
     let cpuPoints = 0;
 
-    btn_contaier.addEventListener('click', (e) => {
+    btn_container.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {
             const playerChoice = e.target.value;
             const computerChoice = getComputerChoice();
@@ -95,6 +95,5 @@ function getComputerChoice() {
     else if (choice === 2) return "paper";
     return "scissors";
 }
-
 
 game();

@@ -4,22 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Odin Rock Paper Scissors</title>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <h1>Rock, Paper, Scissors!</h1>
+        <div id="titleContainer">
+            <h1>Rock, Paper, Scissors!</h1>
+        </div>
         <div id="statusContainer">
             <p id="status">Choose your weapon!</p>
             <p id="battle">The first to earn 5 points wins the battle!</p>
-            <div id="results">
-                <p id="playerScore">Player: 0</p>
-                <p id="cpuScore">CPU: 0</p>
-            </div>
+        </div>
+        <div id="results">
+            <p id="playerScore">Player: 0</p>
+            <p id="cpuScore">CPU: 0</p>
         </div>
         <div id="btnContainer">
-            <button class="choice" value="Rock">Rock</button>
-            <button class="choice" value="Paper">Paper</button>
-            <button class="choice" value="Scissors">Scissors</button>
+            <div class="btn">
+                <button class="choice" value="Rock">🪨</button>
+            </div>
+            <div class="btn">
+                <button class="choice" value="Paper">📜</button>
+            </div>
+            <div class="btn">
+                <button class="choice" value="Scissors">✂️</button>
+            </div>
         </div>
+        <footer><a href="https://github.com/SValls2023">🖥️ Designed by SValls2023</a></footer>
         <script src="index.js"></script>
     </body>
 </html>
