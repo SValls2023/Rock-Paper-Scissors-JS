@@ -4,9 +4,9 @@ function game() {
     const closeModal = document.querySelector('.close-button');
     const titleModal = document.querySelector('#modal-title');
     const textModal = document.querySelector('#modal-dialogue');
-    const btn_container = document.querySelector('#btnContainer')
+    const btn_container = document.querySelector('#btnContainer');
     const status = document.querySelector('#status');
-    const battle = document.querySelector('#battle')
+    const battle = document.querySelector('#battle');
     const playerScore = document.querySelector('#playerScore');
     const cpuScore = document.querySelector('#cpuScore');
     let playerPoints = 0;
@@ -70,7 +70,17 @@ function game() {
 
 // Decides if the player wins, loses, or ties with the computer for the round!
 function playRound(playerSelection, computerSelection) {
+    const playerWeapon = document.querySelector('#playerWeapon');
+    const cpuWeapon = document.querySelector('#cpuWeapon');
+    if(computerSelection === "rock") {
+        cpuWeapon.textContent = '🪨';
+    } else if (computerSelection === "paper") {
+        cpuWeapon.textContent = '📜';
+    } else {
+        cpuWeapon.textContent = '✂️';
+    }
     if (playerSelection === "Rock") {
+        playerWeapon.textContent = '🪨';
         if (computerSelection === "paper")  {
             return 1;
         }
@@ -80,6 +90,7 @@ function playRound(playerSelection, computerSelection) {
     }
 
     if (playerSelection === "Paper") {
+        playerWeapon.textContent = '📜';
         if (computerSelection === "scissors") { 
             return 1;
         }
@@ -89,6 +100,7 @@ function playRound(playerSelection, computerSelection) {
     }
 
     if (playerSelection === "Scissors") {
+        playerWeapon.textContent = '✂️';
         if (computerSelection === "rock") {
             return 1;
         }
